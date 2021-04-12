@@ -1,39 +1,49 @@
 {% extends 'calc/base.html' %}
 {% block content %}
   <section>
-    <div>
-      <div>
         <form id="calc-form" onsubmit="calculate(); return false;">
           <div class="calc-content">
-            <div>
-              <label for="drain-inp">Enter mainline drain size:</label><br />
-              <input id="drain-inp" class="form-control mb-1" type="number" step="0.25" min="0" name="drain[]" placeholder="e.g. 4" required>
-            </div>
-            <div>
-              <label for="inch" class="form-check-label">
-                <input id="inch" class="form-check-input mb-1" type="radio" name="in-mm" value="in"required>&nbsp;Inches(in)
-              </label><br />
-              <label for="millimeter" class="form-check-label">
-                <input id="millimeter" class="form-check-input mb-1" type="radio" name="in-mm" value="mm" required>&nbsp;Millimeters(mm)
-              </label>
-            </div>
-            <label>Enter vent size(s):</label>
-            <div class="input_fields_wrap">
-              <input class="v-size form-control mb-1" type="number" step="0.25" min="0" name="mytext[]" placeholder="e.g. 1.5" required><button type="button" class="add_field_button btn btn-secondary mb-1">Add More Fields</button>
-            </div>
-            <div class="calculate-wrap">
-              <button type="submit" class="calculate calc-btn btn btn-success mb-2">Calculate</button>
-            </div>
-            <div>
-              <button type="reset" class="btn btn-secondary mb-1 reset-btn" onclick="remove()">Reset Form</button>
-            </div>
-            <div>
+            <div class="row">
+							<div class="col-12 col-md-8 col-lg-5 mx-auto px-4 mb-1">
+								<label for="drain-inp">Enter mainline drain size:</label><br />
+								<input id="drain-inp" class="form-control mb-1" type="number" step="0.25" min="0" name="drain[]" placeholder="e.g. 4" required>
+							</div>
+						</div>
+            <div class="row">
+							<div class="col-12 col-md-8 col-lg-5 mx-auto px-4 mb-1">
+								<label for="inch" class="form-check-label">
+									<input id="inch" class="form-check-input mb-1" type="radio" name="in-mm" value="in"required>&nbsp;Inches(in)
+								</label><br />
+								<label for="millimeter" class="form-check-label">
+									<input id="millimeter" class="form-check-input mb-1" type="radio" name="in-mm" value="mm" required>&nbsp;Millimeters(mm)
+								</label>
+							</div>
+						</div>
+            <div class="row">
+							<div class="col-12 col-md-8 col-lg-5 mx-auto px-4 mb-1">
+								<label>Enter vent size(s):</label>
+								<div class="input_fields_wrap">
+									<input class="v-size form-control mb-2" type="number" step="0.25" min="0" name="mytext[]" placeholder="e.g. 1.5" required><button type="button" class="add_field_button btn btn-secondary mb-1">Add More Fields</button>
+								</div>
+							</div>
+						</div>
+            <div class="row">
+							<div class="col-12 col-md-8 col-lg-5 mx-auto px-4 mb-1">
+								<div class="calculate-wrap">
+									<button type="submit" class="calculate calc-btn btn btn-success mb-2">Calculate</button>
+								</div>
+								<div>
+									<button type="reset" class="btn btn-secondary mb-1 reset-btn" onclick="remove()">Reset Form</button>
+								</div>
+							</div>
+						</div>
+            <div class="row">
+							<div class="col-12 col-md-8 col-lg-5 mx-auto px-4 mb-1">
               <p id="response"></p>
             </div>
+						</div>
           </div>
         </form>
-      </div>
-    </div>
   </section>
   <script>
 

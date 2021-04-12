@@ -1,0 +1,101 @@
+{% extends 'calc/base.html' %}
+{% block content %}
+  <section>
+    <div>
+      <div>
+        <form id="calc-form" onsubmit="calculate(); return false;">
+          <div class="calc-content">
+            <div>
+              <label for="drain-inp">Enter mainline drain size:</label><br />
+              <input id="drain-inp" class="form-control mb-1" type="number" step="0.25" min="0" name="drain[]" placeholder="e.g. 4" required>
+            </div>
+            <div>
+              <label for="inch" class="form-check-label">
+                <input id="inch" class="form-check-input mb-1" type="radio" name="in-mm" value="in"required>&nbsp;Inches(in)
+              </label><br />
+              <label for="millimeter" class="form-check-label">
+                <input id="millimeter" class="form-check-input mb-1" type="radio" name="in-mm" value="mm" required>&nbsp;Millimeters(mm)
+              </label>
+            </div>
+            <label>Enter vent size(s):</label>
+            <div class="input_fields_wrap">
+              <input class="v-size form-control mb-1" type="number" step="0.25" min="0" name="mytext[]" placeholder="e.g. 1.5" required><button type="button" class="add_field_button btn btn-secondary mb-1">Add More Fields</button>
+            </div>
+            <div class="calculate-wrap">
+              <button type="submit" class="calculate calc-btn btn btn-success mb-2">Calculate</button>
+            </div>
+            <div>
+              <button type="reset" class="btn btn-secondary mb-1 reset-btn" onclick="remove()">Reset Form</button>
+            </div>
+            <div>
+              <p id="response"></p>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+  <script>
+
+
+
+      var max_fields = 10;
+    	var wrapper	= $(".input_fields_wrap");
+    	var add_button = $(".add_field_button");
+
+    	var x = 1;
+    	$(add_button).click(function(e){
+        e.preventDefault();
+        if(x < max_fields){
+    			x++;
+    			$(wrapper).append('<div class="input-group mb-2 xtra"><input class="v-size form-control w-25" type="number" step="0.25" min="0" name="mytext[]" placeholder="e.g. 1.5" required><button type="button" class="remove_field btn btn-secondary">&nbsp;Remove&nbsp;</button></div>');
+    		}
+    	});
+
+    	$(wrapper).on("click",".remove_field", function(e){
+    	  e.preventDefault(); $(this).parent('div').remove(); x--;
+    	});
+
+      /*var calc_button = $(".calc-btn");
+
+      var total = 0*/
+      function remove(){
+        $(".xtra").remove();
+        x = 1;
+      }
+
+      function roundToTwo(num) {
+        return (+(Math.round(num + "e+2")  + "e-2"));
+      }
+      function calculate() {
+        var units = $("input[name=in-mm]:checked").val();
+        var nums = [];
+        $(".v-size").each(function(index) { nums.push($(this).val()) });
+        var drain_size = document.getElementById("drain-inp").value;
+        var drain_area = roundToTwo((3.141592653589793 * ((drain_size/2)**2)));
+        var total = 0;
+        for (var i=0; i<nums.length; i++) {
+          var size = nums[i];
+          var size_float = parseFloat(size);
+          var size_area = roundToTwo((3.141592653589793 * ((size_float/2)**2)));
+          total += parseFloat(size_area);
+        }
+        var fixed_total = roundToTwo(parseFloat(total));
+        var alert1 = "Sufficient venting provided!\nDrain area: "+drain_area+units+" sq\nAggregate cross-sectional venting area: "+fixed_total+units+" sq";
+        var alert2 = "Not enough venting provided.\nDrain area: "+drain_area+units+" sq\nAggregate cross-sectional venting area: "+fixed_total+units+" sq";
+        if (fixed_total>=drain_area) {
+          alert(alert1);
+        }
+        else {
+          alert(alert2);
+        }
+
+      }
+      /*var reset = $(".reset-btn");
+
+      $(reset).click(function(){
+        document.getElementById("response").innerHTML = "";
+      });*/
+
+  </script>
+{% endblock %}

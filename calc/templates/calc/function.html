@@ -1,0 +1,44 @@
+/*
+function Inches() {
+  var pi = 3.141592653589793;
+  var drain = prompt('Enter drain size(in): ');
+  var vent_count = prompt('Enter desired number of vents: ');
+  var drain_float = parseFloat(drain);
+  var vent_float = parseFloat(vent_count);
+  var drain_area = (pi * ((drain_float/2)**2)).toFixed(2);
+  var total = 0;
+  for (i=1; i<= vent_float; i++) {
+    var size = prompt("Enter size of vent #" + i + "(in): ");
+    var size_float = parseFloat(size);
+    var size_area = (pi * ((size_float/2)**2)).toFixed(2);
+    total += parseFloat(size_area);
+  }
+  if (total>=drain_area) {
+    alert("Sufficient venting provided! Your aggregate \ncross-sectional venting area of "+total+"in \nis greater than or equal to your drain area of "+drain_area+"in. \n:)")
+  }
+  else {
+    alert("Not enough venting provided. Your aggregate \ncross-sectional venting area of "+total+"in \nis less than your drain area of "+drain_area+"in. \n>:(");
+  }
+}
+function Centimeters() {
+  var pi = 3.141592653589793;
+  var drain = prompt('Enter drain size(cm): ');
+  var vent_count = prompt('Enter desire number of vent outlets: ');
+  var drain_float = parseFloat(drain);
+  var vent_float = parseFloat(vent_count);
+  var drain_area = (pi * ((drain_float/2)**2)).toFixed(2);
+  var total = 0;
+  for (i=1; i<= vent_float; i++) {
+    var size = prompt("Enter size of vent #" + i + "(cm): ");
+    var size_float = parseFloat(size);
+    var size_area = (pi * ((size_float/2)**2)).toFixed(2);
+    total += parseFloat(size_area);
+  }
+  if (total>=drain_area) {
+    alert("Sufficient venting provided! Your aggregate \ncross-sectional venting area of "+total+"cm \nis greater than or equal to your drain area of "+drain_area+"cm. \n:)")
+  }
+  else {
+    alert("Not enough venting provided. Your aggregate \ncross-sectional venting area of "+total+"cm \nis less than your drain area of "+drain_area+"cm. \n>:(");
+  }
+}
+*/

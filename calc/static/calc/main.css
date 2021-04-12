@@ -1,0 +1,88 @@
+body {
+  background-image: url('splash-copy.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+header {
+  color: #043353;
+  font-size: 40px;
+  font-weight: bolder;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  text-align: center;
+}
+
+nav {
+  text-align: center;
+  position: relative;
+  top: -20px;
+}
+
+section {
+  margin-left: auto;
+  margin-right: auto;
+  width: 650px;
+}
+
+p {
+  color: #043353;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+a {
+  color: #043353;
+  text-decoration: none;
+}
+
+a:active {
+  color: #043353;
+  text-decoration: none;
+}
+
+a:visited {
+  color: #043353;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #0433b6;
+  text-decoration: none;
+}
+
+hr {
+  margin-left: auto;
+  margin-right: auto;
+  background: black;
+  width: 80%
+}
+
+.navigation {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.about {
+  background: white;
+  padding-top: 10px;
+  padding-right: 10px;
+  padding-bottom: none;
+  padding-left: 10px;
+  border-style: solid;
+  border-radius: 10px;
+  border-color: #043353;
+  align-content: center;
+  margin: auto;
+  width: 63%;
+  text-align: justify;
+  width: 50%;
+}
+
+.calc-content {
+  padding: 60px;
+}
+.calc-btn {
+  float: right;
+}

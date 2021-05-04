@@ -15,21 +15,43 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   </head>
   <body>
-    <header class="container-fluid">
-      <h1><a href="{% url 'calc-home' %}">CROSS-SECTIONAL VENTING<br />CALCULATOR</a></h1>
-    </header>
-    <div class="py-3">
-			<nav>
-				<a class="navigation" href="{% url 'calc-home' %}">Home&nbsp;</a>
-				<a class="navigation" href="{% url 'calc-instructions' %}">&nbsp;Instructions&nbsp;</a>
-				<a class="navigation" href="{% url 'calc-about' %}">&nbsp;About</a>
-				<div class="col-12 col-md-8 col-lg-7 mx-auto px-3">
-					<hr />
+		<!-- Mobile -->
+    <div class="d-md-none">
+			<header>
+				<nav>
+					<div class="pt-3">
+						<h1><a class="nav-col text-decoration-none" href="{% url 'calc-home' %}">CROSS-SECTIONAL VENTING<br />CALCULATOR</a></h1>
+					</div>
+					<div class="pt-3 pb-2">
+						<a class="nav-col text-decoration-none" href="{% url 'calc-home' %}">Home&nbsp;</a>
+						<a class="nav-col text-decoration-none" href="{% url 'calc-instructions' %}">&nbsp;Instructions&nbsp;</a>
+						<a class="nav-col text-decoration-none" href="{% url 'calc-about' %}">&nbsp;About</a>
+					</div>
+				</nav>
+			</header>
+		</div>
+
+		<!-- Desktop -->
+		<div class="d-none d-md-block">
+			<header>
+				<div class="container">
+					<nav>
+						<div class="row pt-3 pb-4">
+							<div class="col-6 pt-1 pb-1 text-start">
+								<a class="nav-col text-decoration-none h2" href="{% url 'calc-home' %}">VENTING CALCULATOR</a>
+							</div>
+							<div class="col-6 pt-3 text-end">
+								<a class="nav-col text-decoration-none h5" href="{% url 'calc-home' %}">Home&nbsp;</a>
+								<a class="nav-col text-decoration-none h5" href="{% url 'calc-instructions' %}">&nbsp;Instructions&nbsp;</a>
+								<a class="nav-col text-decoration-none h5" href="{% url 'calc-about' %}">&nbsp;About</a>
+							</div>
+						</div>
+					</nav>
 				</div>
-			</nav>
+			</header>
 		</div>
     <div>
-      <main class="mb-5">
+      <main>
         {% block content %}{% endblock %}
       </main>
     </div>

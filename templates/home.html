@@ -1,50 +1,115 @@
 {% extends 'base.html' %}
 {% block content %}
-  <section>
-        <form id="calc-form" onsubmit="calculate(); return false;">
-          <div class="calc-content">
-            <div class="row">
-							<div class="col-12 col-md-8 col-lg-5 mx-auto px-4 mb-1">
-								<label for="drain-inp">Enter mainline drain size:</label><br />
-								<input id="drain-inp" class="form-control mb-1" type="number" step="0.25" min="0" name="drain[]" placeholder="e.g. 4" required>
+	<!-- Mobile -->
+  <div class="d-md-none">
+		<section class="pt-5 pb-5">
+			<form id="calc-form-m" onsubmit="calculateMobile(); return false;">
+				<div class="calc-content">
+					<div class="row">
+						<div class="col-12 col-md-8 col-lg-5 mx-auto px-4 mb-1">
+							<label for="drain-inp-m">Enter mainline drain size:</label><br />
+							<input id="drain-inp-m" class="form-control mb-1" type="number" step="0.25" min="0" name="drain[]" placeholder="e.g. 4" required>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-12 col-md-8 col-lg-5 mx-auto px-4 mb-1">
+							<label for="inch-m" class="form-check-label">
+								<input id="inch-m" class="form-check-input mb-1" type="radio" name="in-mm" value="in"required>&nbsp;Inches(in)
+							</label><br />
+							<label for="millimeter-m" class="form-check-label">
+								<input id="millimeter-m" class="form-check-input mb-1" type="radio" name="in-mm" value="mm" required>&nbsp;Millimeters(mm)
+							</label>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-12 col-md-8 col-lg-5 mx-auto px-4 mb-1">
+							<label>Enter vent size(s):</label>
+							<div class="input_fields_wrap">
+								<input class="v-size-m form-control mb-2" type="number" step="0.25" min="0" name="mytext[]" placeholder="e.g. 1.5" required><button type="button" class="add_field_button btn btn-secondary mb-1">Add More Fields</button>
 							</div>
 						</div>
-            <div class="row">
-							<div class="col-12 col-md-8 col-lg-5 mx-auto px-4 mb-1">
-								<label for="inch" class="form-check-label">
-									<input id="inch" class="form-check-input mb-1" type="radio" name="in-mm" value="in"required>&nbsp;Inches(in)
-								</label><br />
-								<label for="millimeter" class="form-check-label">
-									<input id="millimeter" class="form-check-input mb-1" type="radio" name="in-mm" value="mm" required>&nbsp;Millimeters(mm)
-								</label>
+					</div>
+					<div class="row">
+						<div class="col-12 col-md-8 col-lg-5 mx-auto px-4 mb-1">
+							<div class="calculate-wrap">
+								<button type="submit" class="calculate calc-btn btn mb-2">Calculate</button>
+							</div>
+							<div>
+								<button type="reset" class="btn btn-secondary mb-1 reset-btn" onclick="remove()">Reset Form</button>
 							</div>
 						</div>
-            <div class="row">
-							<div class="col-12 col-md-8 col-lg-5 mx-auto px-4 mb-1">
-								<label>Enter vent size(s):</label>
-								<div class="input_fields_wrap">
-									<input class="v-size form-control mb-2" type="number" step="0.25" min="0" name="mytext[]" placeholder="e.g. 1.5" required><button type="button" class="add_field_button btn btn-secondary mb-1">Add More Fields</button>
+					</div>
+					<div class="row mt-3">
+						<div class="col-12 col-md-8 col-lg-5 mx-auto px-4 mb-1">
+						<p id="responseMobile"></p>
+					</div>
+					</div>
+				</div>
+			</form>
+		</section>
+	</div>
+
+	<!-- Desktop -->
+  <div class="d-none d-md-block">
+		<div class="container">
+			<section class="pt-5 pb-5">
+				<div class="row">
+					<div class="col-6">
+						<form id="calc-form-d" onsubmit="calculateDesktop(); return false;">
+
+							<!-- Mainline -->
+							<div class="row">
+								<div class="col-12 px-4">
+									<label for="drain-inp-d" class="fw-bold mb-2">Enter mainline drain size:</label><br />
+									<input id="drain-inp-d" class="form-control mb-2" type="number" step="0.25" min="0" name="drain[]" placeholder="e.g. 4" required>
 								</div>
 							</div>
-						</div>
-            <div class="row">
-							<div class="col-12 col-md-8 col-lg-5 mx-auto px-4 mb-1">
-								<div class="calculate-wrap">
-									<button type="submit" class="calculate calc-btn btn btn-success mb-2">Calculate</button>
-								</div>
-								<div>
-									<button type="reset" class="btn btn-secondary mb-1 reset-btn" onclick="remove()">Reset Form</button>
+
+							<!-- Units of measurement -->
+							<div class="row">
+								<div class="col-12 px-4">
+									<label for="inch-d" class="form-check-label mb-1">
+										<input id="inch-d" class="form-check-input" type="radio" name="in-mm" value="in"required>&nbsp;Inches(in)
+									</label><br />
+									<label for="millimeter-d" class="form-check-label mb-2">
+										<input id="millimeter-d" class="form-check-input" type="radio" name="in-mm" value="mm" required>&nbsp;Millimeters(mm)
+									</label>
 								</div>
 							</div>
+
+							<!-- Vent sizes -->
+							<div class="row">
+								<div class="col-12 px-4">
+									<label class="fw-bold mb-2">Enter vent size(s):</label>
+									<div class="input_fields_wrap">
+										<input class="v-size-d form-control mb-3" type="number" step="0.25" min="0" name="mytext[]" placeholder="e.g. 1.5" required><button type="button" class="add_field_button btn btn-blue mb-3">Add More Fields</button>
+									</div>
+								</div>
+							</div>
+
+							<!-- Calculate and reset buttons -->
+							<div class="row">
+								<div class="col-12 px-4 mb-2">
+									<div class="calculate-wrap">
+										<button type="submit" class="calculate calc-btn btn mb-2" onclick="resetResponse()">Calculate</button>
+									</div>
+									<div>
+										<button type="reset" class="btn btn-blue mb-1 reset-btn" onclick="remove()">Reset Form</button>
+									</div>
+								</div>
+							</div>
+						</form>
+					</div>
+
+					<!-- Response -->
+					<div class="col-6">
+						<div id="responseDesktop" class="col-12 px-4 mb-1">
 						</div>
-            <div class="row">
-							<div class="col-12 col-md-8 col-lg-5 mx-auto px-4 mb-1">
-              <p id="response"></p>
-            </div>
-						</div>
-          </div>
-        </form>
-  </section>
+					</div>
+				</div>
+			</section>
+		</div>
+	</div>
   <script>
 
 
@@ -58,7 +123,12 @@
         e.preventDefault();
         if(x < max_fields){
     			x++;
-    			$(wrapper).append('<div class="input-group mb-2 xtra"><input class="v-size form-control w-25" type="number" step="0.25" min="0" name="mytext[]" placeholder="e.g. 1.5" required><button type="button" class="remove_field btn btn-secondary">&nbsp;Remove&nbsp;</button></div>');
+    			if ($(window).width() < 992) {
+              $(wrapper).append('<div class="input-group mb-3 xtra"><input class="v-size-m form-control w-25" type="number" step="0.25" min="0" name="mytext[]" placeholder="e.g. 1.5" required><button type="button" class="remove_field btn btn-blue">&nbsp;Remove&nbsp;</button></div>');
+          }
+    			else {
+    			    $(wrapper).append('<div class="input-group mb-3 xtra"><input class="v-size-d form-control w-25" type="number" step="0.25" min="0" name="mytext[]" placeholder="e.g. 1.5" required><button type="button" class="remove_field btn btn-blue">&nbsp;Remove&nbsp;</button></div>');
+					}
     		}
     	});
 
@@ -66,26 +136,33 @@
     	  e.preventDefault(); $(this).parent('div').remove(); x--;
     	});
 
-      /*var calc_button = $(".calc-btn");
-
-      var total = 0*/
-      function remove(){
+      function removeMobile(){
         $(".xtra").remove();
+        $("#res1-m").remove();
+        $("#res2-m").remove();
+        x = 1;
+      }
+      function removeDesktop(){
+        $(".xtra").remove();
+        $("#res1-d").remove();
+        $("#res2-d").remove();
         x = 1;
       }
 
       function roundToTwo(num) {
         return (+(Math.round(num + "e+2")  + "e-2"));
       }
-      function calculate() {
+      function calculateMobile() {
+        $("#res1-m").remove();
+        $("#res2-m").remove();
         var units = $("input[name=in-mm]:checked").val();
-        var nums = [];
-        $(".v-size").each(function(index) { nums.push($(this).val()) });
-        var drain_size = document.getElementById("drain-inp").value;
+        var numsMobile = [];
+        $(".v-size-m").each(function(index) { numsMobile.push($(this).val()) });
+        var drain_size = document.getElementById("drain-inp-m").value;
         var drain_area = roundToTwo((3.141592653589793 * ((drain_size/2)**2)));
         var total = 0;
-        for (var i=0; i<nums.length; i++) {
-          var size = nums[i];
+        for (var i=0; i<numsMobile.length; i++) {
+          var size = numsMobile[i];
           var size_float = parseFloat(size);
           var size_area = roundToTwo((3.141592653589793 * ((size_float/2)**2)));
           total += parseFloat(size_area);
@@ -94,10 +171,74 @@
         var alert1 = "Sufficient venting provided!\nDrain area: "+drain_area+units+" sq\nAggregate cross-sectional venting area: "+fixed_total+units+" sq";
         var alert2 = "Not enough venting provided.\nDrain area: "+drain_area+units+" sq\nAggregate cross-sectional venting area: "+fixed_total+units+" sq";
         if (fixed_total>=drain_area) {
-          alert(alert1);
+          var el = document.getElementById("responseMobile")
+          var p1 = document.createElement("p");
+          var p2 = document.createElement("p");
+          p1.id = "res1-m";
+          p2.id = "res2-m";
+          p1.className = "suxes";
+          p1.innerText = "Success!";
+          p2.innerText = alert1;
+          el.appendChild(p1);
+          el.appendChild(p2);
+          document.getElementById("res1-m").scrollIntoView({behavior: 'smooth'});
         }
         else {
-          alert(alert2);
+          var el = document.getElementById("responseMobile")
+          var p1 = document.createElement("p");
+          var p2 = document.createElement("p");
+          p1.id = "res1-m";
+          p2.id = "res2-m";
+          p1.className = "uh-oh";
+          p1.innerText = "Uh-oh!";
+          p2.innerText = alert2;
+          el.appendChild(p1);
+          el.appendChild(p2);
+          document.getElementById("res1-m").scrollIntoView({behavior: 'smooth'});
+        }
+
+      }
+      function calculateDesktop() {
+        $("#res1-d").remove();
+        $("#res2-d").remove();
+        var units = $("input[name=in-mm]:checked").val();
+        var numsDesktop = [];
+        $(".v-size-d").each(function(index) { numsDesktop.push($(this).val()) });
+        var drain_size = document.getElementById("drain-inp-d").value;
+        var drain_area = roundToTwo((3.141592653589793 * ((drain_size/2)**2)));
+        var total = 0;
+        for (var i=0; i<numsDesktop.length; i++) {
+          var size = numsDesktop[i];
+          var size_float = parseFloat(size);
+          var size_area = roundToTwo((3.141592653589793 * ((size_float/2)**2)));
+          total += parseFloat(size_area);
+        }
+        var fixed_total = roundToTwo(parseFloat(total));
+        var alert1 = "Sufficient venting provided!\nDrain area: "+drain_area+units+" sq\nAggregate cross-sectional venting area: "+fixed_total+units+" sq";
+        var alert2 = "Not enough venting provided.\nDrain area: "+drain_area+units+" sq\nAggregate cross-sectional venting area: "+fixed_total+units+" sq";
+        if (fixed_total>=drain_area) {
+          var el = document.getElementById("responseDesktop")
+          var p1 = document.createElement("p");
+          var p2 = document.createElement("p");
+          p1.id = "res1-d";
+          p2.id = "res2-d";
+          p1.className = "suxes";
+          p1.innerText = "Success!";
+          p2.innerText = alert1;
+          el.appendChild(p1);
+          el.appendChild(p2);
+        }
+        else {
+          var el = document.getElementById("responseDesktop")
+          var p1 = document.createElement("p");
+          var p2 = document.createElement("p");
+          p1.id = "res1-d";
+          p2.id = "res2-d";
+          p1.className = "uh-oh";
+          p1.innerText = "Uh-oh!";
+          p2.innerText = alert2;
+          el.appendChild(p1);
+          el.appendChild(p2);
         }
 
       }

@@ -10,8 +10,18 @@ nav {
   text-align: center;
 }
 
-.about {
+.about-mobile {
   padding-top: 20px;
+  padding-right: 10px;
+  padding-bottom: none;
+  padding-left: 10px;
+  align-content: center;
+  margin: auto;
+  width: 93%;
+  text-align: justify;
+}
+.about-desktop {
+  padding-top: 50px;
   padding-right: 10px;
   padding-bottom: none;
   padding-left: 10px;
@@ -19,7 +29,6 @@ nav {
   margin: auto;
   width: 63%;
   text-align: justify;
-  width: 50%;
 }
 
 .nav-col {

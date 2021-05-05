@@ -31,8 +31,8 @@
 							<div class="row">
 								<div class="col-12 px-4">
 									<label class="fw-bold mb-2">Enter vent size(s):</label>
-									<div class="input_fields_wrap">
-										<input class="v-size-m form-control mb-3" type="number" step="0.25" min="0" name="mytext[]" placeholder="e.g. 1.5" required><button type="button" class="add_field_button btn btn-blue-mobile mb-3">Add More Fields</button>
+									<div class="input_fields_wrap_m">
+										<input class="v-size-m form-control mb-3" type="number" step="0.25" min="0" name="mytext[]" placeholder="e.g. 1.5" required><button type="button" class="add_field_button_m btn btn-blue-mobile mb-3">Add More Fields</button>
 									</div>
 								</div>
 							</div>
@@ -43,7 +43,7 @@
 										<button type="submit" class="calculate calc-btn btn mb-2" onclick="resetResponse()">Calculate</button>
 									</div>
 									<div>
-										<button type="reset" class="btn btn-blue-mobile mb-1 reset-btn" onclick="remove()">Reset Form</button>
+										<button type="reset" class="btn btn-blue-mobile mb-1 reset-btn" onclick="resetMobile()">Reset Form</button>
 									</div>
 								</div>
 							</div>
@@ -88,8 +88,8 @@
 							<div class="row">
 								<div class="col-12 px-4">
 									<label class="fw-bold mb-2">Enter vent size(s):</label>
-									<div class="input_fields_wrap">
-										<input class="v-size-d form-control mb-3" type="number" step="0.25" min="0" name="mytext[]" placeholder="e.g. 1.5" required><button type="button" class="add_field_button btn btn-blue mb-3">Add More Fields</button>
+									<div class="input_fields_wrap_d">
+										<input class="v-size-d form-control mb-3" type="number" step="0.25" min="0" name="mytext[]" placeholder="e.g. 1.5" required><button type="button" class="add_field_button_d btn btn-blue mb-3">Add More Fields</button>
 									</div>
 								</div>
 							</div>
@@ -100,7 +100,7 @@
 										<button type="submit" class="calculate calc-btn btn mb-2" onclick="resetResponse()">Calculate</button>
 									</div>
 									<div>
-										<button type="reset" class="btn btn-blue mb-1 reset-btn" onclick="remove()">Reset Form</button>
+										<button type="reset" class="btn btn-blue mb-1 reset-btn" onclick="resetDesktop()">Reset Form</button>
 									</div>
 								</div>
 							</div>
@@ -119,32 +119,43 @@
   <script>
 
       var max_fields = 10;
-    	var wrapper	= $(".input_fields_wrap");
-    	var add_button = $(".add_field_button");
+    	var wrapper_m	= $(".input_fields_wrap_m");
+    	var wrapper_d	= $(".input_fields_wrap_d");
+    	var add_button_m = $(".add_field_button_m");
+    	var add_button_d = $(".add_field_button_d");
 
     	var x = 1;
 
-    	// Input field add button
-    	$(add_button).click(function(e){
+    	// Input field add button mobile
+    	$(add_button_m).click(function(e){
         e.preventDefault();
         if(x < max_fields){
     			x++;
-    			if ($(window).width() < 992) {
-              $(wrapper).append('<div class="input-group mb-3 xtra"><input class="v-size-m form-control w-25" type="number" step="0.25" min="0" name="mytext[]" placeholder="e.g. 1.5" required><button type="button" class="remove_field btn btn-blue-mobile">&nbsp;Remove&nbsp;</button></div>');
-          }
-    			else {
-    			    $(wrapper).append('<div class="input-group mb-3 xtra"><input class="v-size-d form-control w-25" type="number" step="0.25" min="0" name="mytext[]" placeholder="e.g. 1.5" required><button type="button" class="remove_field btn btn-blue">&nbsp;Remove&nbsp;</button></div>');
-					}
+    			$(wrapper_m).append('<div class="input-group mb-3 xtra"><input class="v-size-m form-control w-25" type="number" step="0.25" min="0" name="mytext[]" placeholder="e.g. 1.5" required><button type="button" class="remove_field btn btn-blue-mobile">&nbsp;Remove&nbsp;</button></div>');
     		}
     	});
 
-    	// Extra input removal button
-    	$(wrapper).on("click",".remove_field", function(e){
+    	// Input field add button mobile
+    	$(add_button_d).click(function(e){
+        e.preventDefault();
+        if(x < max_fields){
+    			x++;
+    			$(wrapper_d).append('<div class="input-group mb-3 xtra"><input class="v-size-d form-control w-25" type="number" step="0.25" min="0" name="mytext[]" placeholder="e.g. 1.5" required><button type="button" class="remove_field btn btn-blue">&nbsp;Remove&nbsp;</button></div>');
+    		}
+    	});
+
+    	// Input field removal button mobile
+    	$(wrapper_m).on("click",".remove_field", function(e){
+    	  e.preventDefault(); $(this).parent('div').remove(); x--;
+    	});
+
+    	// Input field removal button desktop
+    	$(wrapper_d).on("click",".remove_field", function(e){
     	  e.preventDefault(); $(this).parent('div').remove(); x--;
     	});
 
     	// Mobile form reset
-      function removeMobile(){
+      function resetMobile(){
         $(".xtra").remove();
         $("#res1-m").remove();
         $("#res2-m").remove();
@@ -152,7 +163,7 @@
       }
 
       // Desktop form reset
-      function removeDesktop(){
+      function resetDesktop(){
         $(".xtra").remove();
         $("#res1-d").remove();
         $("#res2-d").remove();

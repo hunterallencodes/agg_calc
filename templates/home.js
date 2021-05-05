@@ -166,7 +166,7 @@ function calculateDesktop() {
     phv.className = "hist";
     p1.innerText = "Success!";
     p2.innerHTML = alert1;
-    phd.innerHTML = "&nbsp;<span style='color: #198754'><b>&#10003;</b></span> "+drain_size;
+    phd.innerHTML = "&nbsp;<span style='color: green'><b>&#10003;</b></span> "+drain_size;
     phv.innerHTML = history;
     el.appendChild(p1);
     el.appendChild(p2);
@@ -188,7 +188,7 @@ function calculateDesktop() {
     phv.className = "hist";
     p1.innerText = "Uh-oh!";
     p2.innerHTML = alert2;
-    phd.innerHTML = "&nbsp;<span style='color: #ff6f5e'><b>X</b></span> "+drain_size;
+    phd.innerHTML = "&nbsp;<span style='color: red'><b>X</b></span> "+drain_size;
     phv.innerHTML = history;
     el.appendChild(p1);
     el.appendChild(p2);

@@ -46,8 +46,8 @@ nav {
 .calc-btn:hover {
   float: right;
   font-weight: bold;
-  color: #0c0f0e;
-  background: #addcca;
+  color: #c3e8dc;
+  background: #71a893;
 }
 
 .btn-blue-mobile {
@@ -61,8 +61,8 @@ nav {
 }
 
 .btn-blue:hover {
-  color: #ff6fse;
-  background: #2a3a5e;
+  color: #b2bcd4;
+  background: #253047;
 }
 
 .suxes {
@@ -71,17 +71,20 @@ nav {
 }
 
 .uh-oh {
-  color: #ff6f5e;
+  color: #ff5642;
   font-weight: bold;
 }
 
 #history_btn_d {
   font-weight: bold;
-  color: #95bfaf;
-  background: #fff;
+  color: #fff;
+  background: #ff9582;
   border-style: solid;
-  border-color: #95bfaf;
-  border-width: 2px;
+}
+
+#history_btn_d:hover {
+  color: #e6c6c1;
+  background: #d68c7e;
 }
 
 #clear_history_btn_d {
@@ -93,11 +96,6 @@ nav {
 
 #clear_history_btn_d:hover {
   color: darkslategray;
-}
-
-#history_btn_d:hover {
-  color: #83a89b;
-  background: #cfe8de;
 }
 
 #history-wrap-d {

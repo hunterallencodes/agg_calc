@@ -181,8 +181,8 @@
           total += parseFloat(size_area);
         }
         var fixed_total = roundToTwo(parseFloat(total));
-        var alert1 = "Sufficient venting provided!\nDrain area: "+drain_area+units+" sq\nAggregate cross-sectional venting area: "+fixed_total+units+" sq";
-        var alert2 = "Not enough venting provided.\nDrain area: "+drain_area+units+" sq\nAggregate cross-sectional venting area: "+fixed_total+units+" sq";
+        var alert1 = "Sufficient venting provided!<br /><b>Drain area:</b> "+drain_area+units+" sq<br /><b>Aggregate cross-sectional venting area:</b> "+fixed_total+units+" sq";
+        var alert2 = "Not enough venting provided.<br /><b>Drain area:</b> "+drain_area+units+" sq<br /><b>Aggregate cross-sectional venting area:</b> "+fixed_total+units+" sq";
         if (fixed_total>=drain_area) {
           var el = document.getElementById("responseMobile")
           var p1 = document.createElement("p");
@@ -191,7 +191,7 @@
           p2.id = "res2-m";
           p1.className = "suxes";
           p1.innerText = "Success!";
-          p2.innerText = alert1;
+          p2.innerHTML = alert1;
           el.appendChild(p1);
           el.appendChild(p2);
           document.getElementById("res1-m").scrollIntoView({behavior: 'smooth'});
@@ -229,8 +229,8 @@
           total += parseFloat(size_area);
         }
         var fixed_total = roundToTwo(parseFloat(total));
-        var alert1 = "Sufficient venting provided!\nDrain area: "+drain_area+units+" sq\nAggregate cross-sectional venting area: "+fixed_total+units+" sq";
-        var alert2 = "Not enough venting provided.\nDrain area: "+drain_area+units+" sq\nAggregate cross-sectional venting area: "+fixed_total+units+" sq";
+        var alert1 = "Sufficient venting provided!<br /><b>Drain area:</b> "+drain_area+units+" sq<br /><b>Aggregate cross-sectional venting area:</b> "+fixed_total+units+" sq";
+        var alert2 = "Not enough venting provided.<br /><b>Drain area:</b> "+drain_area+units+" sq<br /><b>Aggregate cross-sectional venting area:</b> "+fixed_total+units+" sq";
         if (fixed_total>=drain_area) {
           var el = document.getElementById("responseDesktop")
           var p1 = document.createElement("p");

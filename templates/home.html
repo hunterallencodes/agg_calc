@@ -40,7 +40,7 @@
 							<div class="row">
 								<div class="col-12 px-4 mb-2">
 									<div class="calculate-wrap">
-										<button type="submit" class="calculate calc-btn btn mb-2" onclick="resetResponse()">Calculate</button>
+										<button type="submit" class="calculate calc-btn btn mb-2">Calculate</button>
 									</div>
 									<div>
 										<button type="reset" class="btn btn-blue-mobile mb-1 reset-btn" onclick="resetMobile()">Reset Form</button>
@@ -51,7 +51,7 @@
 					</div>
 					<!-- Response -->
 					<div class="col-12">
-						<div id="responseMobile" class="col-12 px-3 mb-1">
+						<div id="response-mobile" class="col-12 px-3 mb-1">
 						</div>
 					</div>
 				</div>
@@ -97,7 +97,7 @@
 							<div class="row">
 								<div class="col-12 px-4 mb-2">
 									<div class="calculate-wrap">
-										<button type="submit" class="calculate calc-btn btn mb-2" onclick="resetResponse()">Calculate</button>
+										<button type="submit" class="calculate calc-btn btn mb-2">Calculate</button>
 									</div>
 									<div>
 										<button type="reset" class="btn btn-blue mb-1 reset-btn" onclick="resetDesktop()">Reset Form</button>
@@ -108,166 +108,50 @@
 					</div>
 					<!-- Response -->
 					<div class="col-6">
-						<div id="responseDesktop" class="col-12 px-4 mb-1">
+						<div id="response-desktop" class="col-12 px-4 mb-1">
 						</div>
 					</div>
 				</div>
 			</section>
 		</div>
+		<div id="hist_cont" class="container">
+			<div class="row">
+				<div class="col-6">
+					<div class="row">
+						<div class="col-12 px-4">
+							<button id="clear_history_btn_d" type="button">Clear history</button>
+							<button id="history_btn_d" type="button" class="w-100 btn mb-3">
+								Show history
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-6 px-4">
+					<div id="history-wrap-d">
+						<div class="row">
+							<p id="nothing" class="pt-1">
+								Nothing to show
+							</p>
+							<div id="drain-history-d" class="col-6">
+								<p class="pt-1 mb-2">
+									&nbsp;<b>Drain size: </b>
+								</p>
+							</div>
+							<div id="vent-history-d" class="col-6">
+								<p class="pt-1 mb-2">
+									<b>Vent size(s): </b>
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
-
-  <script>
-
-      var max_fields = 10;
-    	var wrapper_m	= $(".input_fields_wrap_m");
-    	var wrapper_d	= $(".input_fields_wrap_d");
-    	var add_button_m = $(".add_field_button_m");
-    	var add_button_d = $(".add_field_button_d");
-
-    	var x = 1;
-
-    	// Input field add button mobile
-    	$(add_button_m).click(function(e){
-        e.preventDefault();
-        if(x < max_fields){
-    			x++;
-    			$(wrapper_m).append('<div class="input-group mb-3 xtra"><input class="v-size-m form-control w-25" type="number" step="0.25" min="0" name="mytext[]" placeholder="e.g. 1.5" required><button type="button" class="remove_field btn btn-blue-mobile">&nbsp;Remove&nbsp;</button></div>');
-    		}
-    	});
-
-    	// Input field add button mobile
-    	$(add_button_d).click(function(e){
-        e.preventDefault();
-        if(x < max_fields){
-    			x++;
-    			$(wrapper_d).append('<div class="input-group mb-3 xtra"><input class="v-size-d form-control w-25" type="number" step="0.25" min="0" name="mytext[]" placeholder="e.g. 1.5" required><button type="button" class="remove_field btn btn-blue">&nbsp;Remove&nbsp;</button></div>');
-    		}
-    	});
-
-    	// Input field removal button mobile
-    	$(wrapper_m).on("click",".remove_field", function(e){
-    	  e.preventDefault(); $(this).parent('div').remove(); x--;
-    	});
-
-    	// Input field removal button desktop
-    	$(wrapper_d).on("click",".remove_field", function(e){
-    	  e.preventDefault(); $(this).parent('div').remove(); x--;
-    	});
-
-    	// Mobile form reset
-      function resetMobile(){
-        $(".xtra").remove();
-        $("#res1-m").remove();
-        $("#res2-m").remove();
-        x = 1;
-      }
-
-      // Desktop form reset
-      function resetDesktop(){
-        $(".xtra").remove();
-        $("#res1-d").remove();
-        $("#res2-d").remove();
-        x = 1;
-      }
-
-      // Decimal rounding function
-      function roundToTwo(num) {
-        return (+(Math.round(num + "e+2")  + "e-2"));
-      }
-
-      // Mobile calculator function
-      function calculateMobile() {
-        $("#res1-m").remove();
-        $("#res2-m").remove();
-        var units = $("input[name=in-mm]:checked").val();
-        var numsMobile = [];
-        $(".v-size-m").each(function(index) { numsMobile.push($(this).val()) });
-        var drain_size = document.getElementById("drain-inp-m").value;
-        var drain_area = roundToTwo((3.141592653589793 * ((drain_size/2)**2)));
-        var total = 0;
-        for (var i=0; i<numsMobile.length; i++) {
-          var size = numsMobile[i];
-          var size_float = parseFloat(size);
-          var size_area = roundToTwo((3.141592653589793 * ((size_float/2)**2)));
-          total += parseFloat(size_area);
-        }
-        var fixed_total = roundToTwo(parseFloat(total));
-        var alert1 = "Sufficient venting provided!<br /><b>Drain area:</b> "+drain_area+units+" sq<br /><b>Aggregate cross-sectional venting area:</b> "+fixed_total+units+" sq";
-        var alert2 = "Not enough venting provided.<br /><b>Drain area:</b> "+drain_area+units+" sq<br /><b>Aggregate cross-sectional venting area:</b> "+fixed_total+units+" sq";
-        if (fixed_total>=drain_area) {
-          var el = document.getElementById("responseMobile")
-          var p1 = document.createElement("p");
-          var p2 = document.createElement("p");
-          p1.id = "res1-m";
-          p2.id = "res2-m";
-          p1.className = "suxes";
-          p1.innerText = "Success!";
-          p2.innerHTML = alert1;
-          el.appendChild(p1);
-          el.appendChild(p2);
-          document.getElementById("res1-m").scrollIntoView({behavior: 'smooth'});
-        }
-        else {
-          var el = document.getElementById("responseMobile")
-          var p1 = document.createElement("p");
-          var p2 = document.createElement("p");
-          p1.id = "res1-m";
-          p2.id = "res2-m";
-          p1.className = "uh-oh";
-          p1.innerText = "Uh-oh!";
-          p2.innerHTML = alert2;
-          el.appendChild(p1);
-          el.appendChild(p2);
-          document.getElementById("res1-m").scrollIntoView({behavior: 'smooth'});
-        }
-
-      }
-
-      // Desktop calculator function
-      function calculateDesktop() {
-        $("#res1-d").remove();
-        $("#res2-d").remove();
-        var units = $("input[name=in-mm]:checked").val();
-        var numsDesktop = [];
-        $(".v-size-d").each(function(index) { numsDesktop.push($(this).val()) });
-        var drain_size = document.getElementById("drain-inp-d").value;
-        var drain_area = roundToTwo((3.141592653589793 * ((drain_size/2)**2)));
-        var total = 0;
-        for (var i=0; i<numsDesktop.length; i++) {
-          var size = numsDesktop[i];
-          var size_float = parseFloat(size);
-          var size_area = roundToTwo((3.141592653589793 * ((size_float/2)**2)));
-          total += parseFloat(size_area);
-        }
-        var fixed_total = roundToTwo(parseFloat(total));
-        var alert1 = "Sufficient venting provided!<br /><b>Drain area:</b> "+drain_area+units+" sq<br /><b>Aggregate cross-sectional venting area:</b> "+fixed_total+units+" sq";
-        var alert2 = "Not enough venting provided.<br /><b>Drain area:</b> "+drain_area+units+" sq<br /><b>Aggregate cross-sectional venting area:</b> "+fixed_total+units+" sq";
-        if (fixed_total>=drain_area) {
-          var el = document.getElementById("responseDesktop")
-          var p1 = document.createElement("p");
-          var p2 = document.createElement("p");
-          p1.id = "res1-d";
-          p2.id = "res2-d";
-          p1.className = "suxes";
-          p1.innerText = "Success!";
-          p2.innerHTML = alert1;
-          el.appendChild(p1);
-          el.appendChild(p2);
-        }
-        else {
-          var el = document.getElementById("responseDesktop")
-          var p1 = document.createElement("p");
-          var p2 = document.createElement("p");
-          p1.id = "res1-d";
-          p2.id = "res2-d";
-          p1.className = "uh-oh";
-          p1.innerText = "Uh-oh!";
-          p2.innerHTML = alert2;
-          el.appendChild(p1);
-          el.appendChild(p2);
-        }
-      }
-
-  </script>
+	<script>
+  	{% include 'home.js' %}
+	</script>
 
 {% endblock %}

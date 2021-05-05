@@ -74,3 +74,40 @@ nav {
   color: #ff6f5e;
   font-weight: bold;
 }
+
+#history_btn_d {
+  font-weight: bold;
+  color: #95bfaf;
+  background: #fff;
+  border-style: solid;
+  border-color: #95bfaf;
+  border-width: 2px;
+}
+
+#clear_history_btn_d {
+  background: none;
+  border: none;
+  color: gray;
+  float: right;
+}
+
+#clear_history_btn_d:hover {
+  color: darkslategray;
+}
+
+#history_btn_d:hover {
+  color: #83a89b;
+  background: #cfe8de;
+}
+
+#history-wrap-d {
+  border-style: solid;
+  border-width: 0.25px;
+  border-color: silver;
+  border-radius: 4px;
+  background: #fff;
+  padding-top: 10px;
+  padding-right: 10px;
+  padding-left: 10px;
+  margin-bottom: 50px;
+}

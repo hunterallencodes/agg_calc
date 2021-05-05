@@ -17,8 +17,7 @@ SECRET_KEY = env('SECRET_KEY')
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 ALLOWED_HOSTS = ['143.198.52.197', 'ventingcalculator.com', 'www.ventingcalculator.com']
-if DEBUG:
-    ALLOWED_HOSTS = []
+
 INSTALLED_APPS = [
     'calc.apps.CalcConfig',
     'django.contrib.admin',

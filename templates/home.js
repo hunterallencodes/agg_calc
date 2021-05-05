@@ -3,6 +3,7 @@ const wrapper_m	= $(".input_fields_wrap_m");
 const wrapper_d	= $(".input_fields_wrap_d");
 const add_button_m = $(".add_field_button_m");
 const add_button_d = $(".add_field_button_d");
+const history_btn_m = $("#history_btn_m")
 const history_btn_d = $("#history_btn_d")
 
 var x = 1;
@@ -35,22 +36,39 @@ $(wrapper_d).on("click",".remove_field", function(e){
   e.preventDefault(); $(this).parent('div').remove(); x--;
 });
 
+$('#history-wrap-m').hide();
+$('#drain-history-m').hide();
+$('#vent-history-m').hide();
 $('#history-wrap-d').hide();
 $('#drain-history-d').hide();
 $('#vent-history-d').hide();
 
+// History toggle mobile
+$(history_btn_m).click(function(){
+  $('#history-wrap-m').toggle();
+  document.getElementById("hist_cont_m").scrollIntoView({behavior: 'smooth'});
+});
+
 // History toggle desktop
 $(history_btn_d).click(function(){
   $('#history-wrap-d').toggle();
-  document.getElementById("hist_cont").scrollIntoView({behavior: 'smooth'});
+  document.getElementById("hist_cont_d").scrollIntoView({behavior: 'smooth'});
 });
+
+// Clear history mobile
+$('#clear_history_btn_m').click(function(){
+  $('.hist_m').remove();
+  $('#drain-history-m').hide();
+  $('#vent-history-m').hide();
+  $('#nothing-m').show();
+})
 
 // Clear history desktop
 $('#clear_history_btn_d').click(function(){
-  $('.hist').remove();
+  $('.hist_d').remove();
   $('#drain-history-d').hide();
   $('#vent-history-d').hide();
-  $('#nothing').show();
+  $('#nothing-d').show();
 })
 
 // Mobile form reset
@@ -78,8 +96,12 @@ function roundToTwo(num) {
 function calculateMobile() {
   $("#res1-m").remove();
   $("#res2-m").remove();
+  $("#nothing-m").hide();
+  $('#drain-history-m').show();
+  $('#vent-history-m').show();
   var units = $("input[name=in-mm]:checked").val();
   var numsMobile = [];
+  var history = "";
   $(".v-size-m").each(function(index) { numsMobile.push($(this).val()) });
   var drain_size = document.getElementById("drain-inp-m").value;
   var drain_area = roundToTwo((3.141592653589793 * ((drain_size/2)**2)));
@@ -89,34 +111,60 @@ function calculateMobile() {
     let size_float = parseFloat(size);
     let size_area = roundToTwo((3.141592653589793 * ((size_float/2)**2)));
     total += parseFloat(size_area);
+    if (history=="") {
+      history += numsMobile[i];
+    }
+    else {
+      history += ", "+numsMobile[i];
+    }
   }
   var fixed_total = roundToTwo(parseFloat(total));
   var alert1 = "Sufficient venting provided!<br /><b>Drain area:</b> "+drain_area+units+" sq<br /><b>Aggregate cross-sectional venting area:</b> "+fixed_total+units+" sq";
   var alert2 = "Not enough venting provided.<br /><b>Drain area:</b> "+drain_area+units+" sq<br /><b>Aggregate cross-sectional venting area:</b> "+fixed_total+units+" sq";
   if (fixed_total>=drain_area) {
     var el = document.getElementById("response-mobile")
+    var drain_wrap = document.getElementById("drain-history-m");
+    var vent_wrap = document.getElementById("vent-history-m");
     var p1 = document.createElement("p");
     var p2 = document.createElement("p");
+    var phd = document.createElement("p");
+    var phv = document.createElement("p");
     p1.id = "res1-m";
     p2.id = "res2-m";
     p1.className = "suxes";
+    phd.className = "hist_m";
+    phv.className = "hist_m";
     p1.innerText = "Success!";
     p2.innerHTML = alert1;
+    phd.innerHTML = "&nbsp;<span style='color: green'><b>&#10003;</b></span> "+drain_size;
+    phv.innerHTML = history;
     el.appendChild(p1);
     el.appendChild(p2);
+    drain_wrap.appendChild(phd);
+    vent_wrap.appendChild(phv);
     document.getElementById("res1-m").scrollIntoView({behavior: 'smooth'});
   }
   else {
-    var el = document.getElementById("response-mobile")
+    var el = document.getElementById("response-mobile");
+    var drain_wrap = document.getElementById("drain-history-m");
+    var vent_wrap = document.getElementById("vent-history-m");
     var p1 = document.createElement("p");
     var p2 = document.createElement("p");
+    var phd = document.createElement("p");
+    var phv = document.createElement("p");
     p1.id = "res1-m";
     p2.id = "res2-m";
     p1.className = "uh-oh";
+    phd.className = "hist_m";
+    phv.className = "hist_m";
     p1.innerText = "Uh-oh!";
     p2.innerHTML = alert2;
+    phd.innerHTML = "&nbsp;<span style='color: red'><b>X</b></span> "+drain_size;
+    phv.innerHTML = history;
     el.appendChild(p1);
     el.appendChild(p2);
+    drain_wrap.appendChild(phd);
+    vent_wrap.appendChild(phv);
     document.getElementById("res1-m").scrollIntoView({behavior: 'smooth'});
   }
 
@@ -126,7 +174,7 @@ function calculateMobile() {
 function calculateDesktop() {
   $("#res1-d").remove();
   $("#res2-d").remove();
-  $("#nothing").hide();
+  $("#nothing-d").hide();
   $('#drain-history-d').show();
   $('#vent-history-d').show();
   var units = $("input[name=in-mm]:checked").val();
@@ -162,8 +210,8 @@ function calculateDesktop() {
     p1.id = "res1-d";
     p2.id = "res2-d";
     p1.className = "suxes";
-    phd.className = "hist";
-    phv.className = "hist";
+    phd.className = "hist_d";
+    phv.className = "hist_d";
     p1.innerText = "Success!";
     p2.innerHTML = alert1;
     phd.innerHTML = "&nbsp;<span style='color: green'><b>&#10003;</b></span> "+drain_size;
@@ -184,8 +232,8 @@ function calculateDesktop() {
     p1.id = "res1-d";
     p2.id = "res2-d";
     p1.className = "uh-oh";
-    phd.className = "hist";
-    phv.className = "hist";
+    phd.className = "hist_d";
+    phv.className = "hist_d";
     p1.innerText = "Uh-oh!";
     p2.innerHTML = alert2;
     phd.innerHTML = "&nbsp;<span style='color: red'><b>X</b></span> "+drain_size;

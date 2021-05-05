@@ -94,6 +94,29 @@ nav {
   font-weight: bold;
 }
 
+#history_btn_m {
+  font-weight: bold;
+  color: #fff;
+  background: #ff9582;
+  border-style: solid;
+}
+
+#history_btn_m:hover {
+  color: #e6c6c1;
+  background: #d68c7e;
+}
+
+#clear_history_btn_m {
+  background: none;
+  border: none;
+  color: gray;
+  float: right;
+}
+
+#clear_history_btn_m:hover {
+  color: darkslategray;
+}
+
 #history_btn_d {
   font-weight: bold;
   color: #fff;
@@ -117,6 +140,17 @@ nav {
   color: darkslategray;
 }
 
+#history-wrap-m {
+  border-style: solid;
+  border-width: 0.25px;
+  border-color: silver;
+  border-radius: 4px;
+  background: #fff;
+  padding-top: 10px;
+  padding-right: 10px;
+  padding-left: 10px;
+  margin-bottom: 50px;
+}
 #history-wrap-d {
   border-style: solid;
   border-width: 0.25px;

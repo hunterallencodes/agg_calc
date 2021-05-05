@@ -19,7 +19,6 @@ nav {
   margin: auto;
   width: 93%;
   text-align: justify;
-  font-size: 16px;
 }
 .about-desktop {
   padding-top: 50px;
@@ -27,6 +26,7 @@ nav {
   padding-bottom: none;
   padding-left: 10px;
   text-align: left;
+  font-size: 16px;
 }
 
 .nav-col {

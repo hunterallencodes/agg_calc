@@ -94,17 +94,6 @@ nav {
   font-weight: bold;
 }
 
-#history_btn_m {
-  font-weight: bold;
-  color: #fff;
-  background: #ff9582;
-  border-style: solid;
-}
-
-#history_btn_m:hover {
-  color: #e6c6c1;
-  background: #d68c7e;
-}
 
 #clear_history_btn_m {
   background: none;
@@ -114,6 +103,17 @@ nav {
 }
 
 #clear_history_btn_m:hover {
+  color: darkslategray;
+}
+
+#clear_history_btn_d {
+  background: none;
+  border: none;
+  color: gray;
+  float: right;
+}
+
+#clear_history_btn_d:hover {
   color: darkslategray;
 }
 
@@ -129,15 +129,18 @@ nav {
   background: #d68c7e;
 }
 
-#clear_history_btn_d {
-  background: none;
-  border: none;
-  color: gray;
-  float: right;
+#history_btn_m {
+  font-weight: bold;
+  color: #fff;
+  background: #ff9582;
+  border-style: solid;
 }
 
-#clear_history_btn_d:hover {
-  color: darkslategray;
+#history_btn_m:hover {
+  font-weight: bold;
+  color: #fff;
+  background: #ff9582;
+  border-style: solid;
 }
 
 #history-wrap-m {

@@ -181,8 +181,8 @@
           total += parseFloat(size_area);
         }
         var fixed_total = roundToTwo(parseFloat(total));
-        var alert1 = "Sufficient venting provided!\nDrain area: "+drain_area+units+" sq\nAggregate cross-sectional venting area: "+fixed_total+units+" sq";
-        var alert2 = "Not enough venting provided.\nDrain area: "+drain_area+units+" sq\nAggregate cross-sectional venting area: "+fixed_total+units+" sq";
+        var alert1 = "Sufficient venting provided!\n<b>Drain area:</b> "+drain_area+units+" sq\n<b>Aggregate cross-sectional venting area:</b> "+fixed_total+units+" sq";
+        var alert2 = "Not enough venting provided.\n<b>Drain area:</b> "+drain_area+units+" sq\n<b>Aggregate cross-sectional venting area:</b> "+fixed_total+units+" sq";
         if (fixed_total>=drain_area) {
           var el = document.getElementById("responseMobile")
           var p1 = document.createElement("p");

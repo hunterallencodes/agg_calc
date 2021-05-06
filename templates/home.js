@@ -50,7 +50,7 @@ $(wrapper_d).on("click",".remove_field", function(e){
 $('#history-wrap-m').hide();
 $('#drain-history-m').hide();
 $('#vent-history-m').hide();
-$('#history-wrap-d').hide();
+//$('#history-wrap-d').hide();
 $('#drain-history-d').hide();
 $('#vent-history-d').hide();
 
@@ -60,11 +60,11 @@ $(history_btn_m).click(function(){
   document.getElementById("hist_cont_m").scrollIntoView({behavior: 'smooth'});
 });
 
-// History toggle desktop
+/* History toggle desktop
 $(history_btn_d).click(function(){
   $('#history-wrap-d').toggle();
   document.getElementById("hist_cont_d").scrollIntoView({behavior: 'smooth'});
-});
+}); */
 
 // Clear history mobile
 $('#clear_history_btn_m').click(function(){
@@ -85,16 +85,14 @@ $('#clear_history_btn_d').click(function(){
 // Mobile form reset
 function resetMobile(){
   $(".xtra").remove();
-  $("#res1-m").remove();
-  $("#res2-m").remove();
+  $("#res-m").remove();
   x = 1;
 }
 
 // Desktop form reset
 function resetDesktop(){
   $(".xtra").remove();
-  $("#res1-d").remove();
-  $("#res2-d").remove();
+  $("#res-d").remove();
   x = 1;
 }
 
@@ -105,8 +103,7 @@ function roundToTwo(num) {
 
 // Mobile calculator function
 function calculateMobile() {
-  $("#res1-m").remove();
-  $("#res2-m").remove();
+  $("#res-m").remove();
   $("#nothing-m").hide();
   $('#drain-history-m').show();
   $('#vent-history-m').show();
@@ -136,12 +133,12 @@ function calculateMobile() {
     var el = document.getElementById("response-mobile")
     var drain_wrap = document.getElementById("drain-history-m");
     var vent_wrap = document.getElementById("vent-history-m");
+    var div = document.createElement("div");
     var p1 = document.createElement("p");
     var p2 = document.createElement("p");
     var phd = document.createElement("p");
     var phv = document.createElement("p");
-    p1.id = "res1-m";
-    p2.id = "res2-m";
+    div.id = "res-m"
     p1.className = "suxes";
     phd.className = "hist_m";
     phv.className = "hist_m";
@@ -149,22 +146,23 @@ function calculateMobile() {
     p2.innerHTML = alert1;
     phd.innerHTML = "&nbsp;<span style='color: green'><b>&#10003;</b></span> "+drain_size;
     phv.innerHTML = history;
-    el.appendChild(p1);
-    el.appendChild(p2);
+    div.appendChild(p1);
+    div.appendChild(p2);
+    el.appendChild(div);
     drain_wrap.appendChild(phd);
     vent_wrap.appendChild(phv);
-    document.getElementById("res1-m").scrollIntoView({behavior: 'smooth'});
+    document.getElementById("res-m").scrollIntoView({behavior: 'smooth'});
   }
   else {
     var el = document.getElementById("response-mobile");
     var drain_wrap = document.getElementById("drain-history-m");
     var vent_wrap = document.getElementById("vent-history-m");
+    var div = document.createElement("div");
     var p1 = document.createElement("p");
     var p2 = document.createElement("p");
     var phd = document.createElement("p");
     var phv = document.createElement("p");
-    p1.id = "res1-m";
-    p2.id = "res2-m";
+    div.id = "res-m"
     p1.className = "uh-oh";
     phd.className = "hist_m";
     phv.className = "hist_m";
@@ -172,19 +170,19 @@ function calculateMobile() {
     p2.innerHTML = alert2;
     phd.innerHTML = "&nbsp;<span style='color: red'><b>X</b></span> "+drain_size;
     phv.innerHTML = history;
-    el.appendChild(p1);
-    el.appendChild(p2);
+    div.appendChild(p1);
+    div.appendChild(p2);
+    el.appendChild(div);
     drain_wrap.appendChild(phd);
     vent_wrap.appendChild(phv);
-    document.getElementById("res1-m").scrollIntoView({behavior: 'smooth'});
+    document.getElementById("res-m").scrollIntoView({behavior: 'smooth'});
   }
 
 }
 
 // Desktop calculator function
 function calculateDesktop() {
-  $("#res1-d").remove();
-  $("#res2-d").remove();
+  $("#res-d").remove();
   $("#nothing-d").hide();
   $('#drain-history-d').show();
   $('#vent-history-d').show();
@@ -214,12 +212,12 @@ function calculateDesktop() {
     var el = document.getElementById("response-desktop");
     var drain_wrap = document.getElementById("drain-history-d");
     var vent_wrap = document.getElementById("vent-history-d");
+    var div = document.createElement("div");
     var p1 = document.createElement("p");
     var p2 = document.createElement("p");
     var phd = document.createElement("p");
     var phv = document.createElement("p");
-    p1.id = "res1-d";
-    p2.id = "res2-d";
+    div.id = "res-d"
     p1.className = "suxes";
     phd.className = "hist_d";
     phv.className = "hist_d";
@@ -227,8 +225,9 @@ function calculateDesktop() {
     p2.innerHTML = alert1;
     phd.innerHTML = "&nbsp;<span style='color: green'><b>&#10003;</b></span> "+drain_size;
     phv.innerHTML = history;
-    el.appendChild(p1);
-    el.appendChild(p2);
+    div.appendChild(p1);
+    div.appendChild(p2);
+    el.appendChild(div);
     drain_wrap.appendChild(phd);
     vent_wrap.appendChild(phv);
   }
@@ -236,12 +235,12 @@ function calculateDesktop() {
     var el = document.getElementById("response-desktop");
     var drain_wrap = document.getElementById("drain-history-d");
     var vent_wrap = document.getElementById("vent-history-d");
+    var div = document.createElement("div");
     var p1 = document.createElement("p");
     var p2 = document.createElement("p");
     var phd = document.createElement("p");
     var phv = document.createElement("p");
-    p1.id = "res1-d";
-    p2.id = "res2-d";
+    div.id = "res-d";
     p1.className = "uh-oh";
     phd.className = "hist_d";
     phv.className = "hist_d";
@@ -249,8 +248,9 @@ function calculateDesktop() {
     p2.innerHTML = alert2;
     phd.innerHTML = "&nbsp;<span style='color: red'><b>X</b></span> "+drain_size;
     phv.innerHTML = history;
-    el.appendChild(p1);
-    el.appendChild(p2);
+    div.appendChild(p1);
+    div.appendChild(p2);
+    el.appendChild(div);
     drain_wrap.appendChild(phd);
     vent_wrap.appendChild(phv);
   }

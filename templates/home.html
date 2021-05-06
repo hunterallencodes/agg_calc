@@ -51,7 +51,7 @@
 					</div>
 					<!-- Response -->
 					<div class="col-12">
-						<div id="response-mobile" class="col-12 px-3 mb-1">
+						<div id="response-mobile" class="col-12 px-3 mt-5 mb-1">
 						</div>
 					</div>
 				</div>
@@ -64,7 +64,7 @@
 					<div class="row">
 						<div class="col-12 px-4">
 							<button id="clear_history_btn_m" type="button">Clear history</button>
-							<button id="history_btn_m" type="button" class="w-100 btn mb-3">
+							<button id="history_btn_m" type="button" class="w-100 btn mt-2 mb-3">
 								Show history
 							</button>
 						</div>
@@ -152,13 +152,13 @@
 			</section>
 		</div>
 		<!-- History -->
-		<div id="hist_cont_d" class="container">
+		<div id="hist_cont_d" class="container" x-data="{ open: false }">
 			<div class="row">
 				<div class="col-6">
 					<div class="row">
 						<div class="col-12 px-4">
 							<button id="clear_history_btn_d" type="button">Clear history</button>
-							<button id="history_btn_d" type="button" class="w-100 btn mb-3">
+							<button id="history_btn_d" type="button" class="w-100 btn mt-1 mb-3" x-on:click="open = !open" :aria-expanded="open ? 'true': 'false'" :class="{ 'active': open }">
 								Show history
 							</button>
 						</div>
@@ -167,7 +167,14 @@
 			</div>
 			<div class="row">
 				<div class="col-6 px-4">
-					<div id="history-wrap-d">
+					<div id="history-wrap-d"
+							 x-show="open"
+               x-transition:enter="transition ease-out duration-200"
+               x-transition:enter-start="opacity-0 transform scale-95"
+               x-transition:enter-end="opacity-100 transform scale-100"
+               x-transition:leave="transition ease-in duration-200"
+               x-transition:leave-start="opacity-100 transform scale-100"
+               x-transition:leave-end="opacity-0 transform scale-95">
 						<div class="row">
 							<p id="nothing-d" class="pt-1">
 								Nothing to show

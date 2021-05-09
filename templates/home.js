@@ -8,17 +8,6 @@ const history_btn_d = $("#history_btn_d")
 
 var x = 1;
 
-// Warning message
-$(window).on('beforeunload', function() {
-  var c = confirm();
-  if (c) {
-    return true;
-  }
-  else {
-    return false;
-  }
-});
-
 // Input field add button mobile
 $(add_button_m).click(function(e){
   e.preventDefault();
